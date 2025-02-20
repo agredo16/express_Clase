@@ -1,15 +1,23 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
-dotenv.config();
-const usersRouter=require('./app/routers/usersRouter')
+const dotenv=require("dotenv");
+const userRouter = require('./app/routers/userRouter');
+
+
 app.use(express.json());
+dotenv.config();
+app.use("/api", userRouter)
 
-//ruta
-app.use("/api", usersRouter);
+try {
+    const userRouter = require("./app/routers/userRouter");
+    app.use("/api", userRouter);
+} catch (error) {
+    console.error("Error al cargar userRouter:", error);
+}
 
-//configuracion puerto
-const PORT = process.env.PORT;
+
+// Configuración del puerto
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log("servidor corriendo");
-})
+    console.log(`Servidor corriendo`);
+});
