@@ -6,9 +6,17 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const base = require(__dirname + '/../config/config.json')[env];
 const db = {};
-
+const config={
+  "username": "root",
+    "password": "rEqMFHStpCrgZYkpMaSHbNlIlhUpsXdm",
+    "database": "railway",
+    "host":"autorack.proxy.rlwy.net",
+    "port":42444,
+    "dialect": "mysql",
+    dialectModule:mysql2
+}
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
